@@ -115,3 +115,25 @@ results = [
       }
   }
 ]
+
+
+
+application_df = pd.json_normalize(results, meta=['verumIdentifier', 'platformCatalog', 'deployment', 'assetName'], errors='ignore').explode('application').explode('billToOrganization')
+application_df1 = pd.concat([application_df.drop(['application', 'billToOrganization'], axis=1).reset_index(drop=True), pd.json_normalize(application_df.application), pd.json_normalize(application_df.billToOrganization)], axis=1)
+application_df1.drop(columns=['verumIdentifier'], inplace=True)
+pprint(application_df1.to_dict('records'))
+
+application_df1 = application_df1.explode('contact').explode('organization')
+application_df1 = pd.concat([application_df1.drop(['contact', 'organization'], axis=1).reset_index(drop=True), pd.json_normalize(application_df1.contact), pd.json_normalize(application_df1.organization)], axis=1)
+# application_df1.drop(columns=['verumIdentifier'], inplace=True)
+
+
+
+
+
+
+
+application_df1 = application_df1.filter(regex='^(?!.*verumIdentifier$)')
+application_df1.columns = [rec.split('.')[-1] for rec in aa]
+
+application_df2 = application_df1.to_dict('records')
