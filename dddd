@@ -1,0 +1,117 @@
+results = [
+  {
+    'assetName': 'iaasa00020143',
+    'verumIdentifier': '202401466',
+    'application': [
+      {
+        'techGroupOwner': 'PS - Application Integration & Streaming',
+        'verumIdentifier': '88153:64058',
+        'contact': [
+          {
+            'contactType': 'L2 Operate Manager',
+            'sid': 'O636774',
+            'verumIdentifier': '88153:64058_L2 Operate Manager_O636774'
+          },
+          {
+            'contactType': 'Deployment Owner',
+            'sid': 'O636774',
+            'verumIdentifier': '88153:64058_Deployment Owner_O636774'
+          }
+        ]
+      },
+    ],
+    'billToOrganization': [
+      {
+        'costCenter': '30736',
+        'isPrimary': 'Yes',
+        'verumIdentifier': '202401466_30736',
+        'organization': [
+          {
+            'cioLOB': 'GTI',
+            'verumIdentifier': '30736'
+          },
+          {
+            'cioLOB': 'CIB',
+            'verumIdentifier': '30736'
+          }
+        ],
+      },
+      {
+        'costCenter': '30736!!',
+        'isPrimary': 'Yes!!',
+        'verumIdentifier': '202401466_30736!!',
+        'organization': [
+          {
+            'cioLOB': 'GTI!!',
+            'verumIdentifier': '30736!!'
+          },
+          {
+            'cioLOB': 'CIB!!',
+            'verumIdentifier': '30736!!'
+          }
+        ],
+      },
+    ],
+    'deployment': {
+      'address': {
+        'region': 'APAC',
+        'verumIdentifier': '33315'
+      },
+      'verumIdentifier': '202401466'
+    },
+    'platformCatalog': {
+      'manufacturer': 'REDHAT',
+      'verumIdentifier': '55362'
+    }
+  },
+  {
+    'assetName': 'iaasa00020143@@@@',
+    'verumIdentifier': '202401466@@@@@',
+    'application': [
+      {
+        'techGroupOwner': 'PS - Application Integration & Streaming@@@@@',
+        'verumIdentifier': '88153:64058@@@@@',
+        'contact': [
+          {
+            'contactType': 'L2 Operate Manager@@@@',
+            'sid': 'O636774@@@@',
+            'verumIdentifier': '88153:64058_L2 Operate Manager_O636774@@@'
+          },
+          {
+            'contactType': 'Deployment Owner@@@@',
+            'sid': 'O636774@@@@',
+            'verumIdentifier': '88153:64058_Deployment Owner_O636774@@@'
+          }
+        ]
+      },
+    ],
+      'billToOrganization': [
+        {
+          'costCenter': '30736@@@@',
+          'isPrimary': 'Yes@@@@',
+          'verumIdentifier': '202401466_30736@@@@',
+          'organization': [
+            {
+              'cioLOB': 'GTI@@@@',
+              'verumIdentifier': '30736@@@'
+            },
+            {
+              'cioLOB': 'CIB@@@@',
+              'verumIdentifier': '30736@@@'
+            }
+          ]
+        },
+      ],
+      'deployment': {
+        'address': {
+          'region': 'APAC@@@@',
+          'verumIdentifier': '33315@@@'
+        },
+        'verumIdentifier': '202401466@@@'
+      },
+      'platformCatalog': {
+        'manufacturer': 'REDHAT@@@@',
+        'verumIdentifier': '55362@@@'
+      }
+  }
+]
