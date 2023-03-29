@@ -1,0 +1,56 @@
+import asyncio
+from flask import Flask, Blueprint
+from flask_restx import Api, Resource
+
+from temporalio.client import Client
+from temporalio.worker import Worker
+from temporalio import activity, workflow
+
+
+
+app = Flask(__name__)
+blueprint = Blueprint('api', __name__, url_prefix='/api')
+api = Api(blueprint, doc='/doc')
+
+
+# Define an activity implementation
+@activity.defn
+def my_activity(param1: str, param2: int) -> str:
+    return f"Result: {param1} {param2}"
+
+# Define a workflow implementation
+@workflow.defn
+class my_workflow:
+    @workflow.run
+    async def run(self, param1: str, param2: int):
+        result1 = await workflow.execute_activity(my_activity, param1, param2)
+        result2 = await workflow.execute_activity(my_activity, result1, 123)
+        return result2
+
+
+# Define a Flask route that starts a workflow
+@api.route("/start_workflow/<string:name>")
+@api.doc(params={
+    'name': 'A comma-separated list of names'
+})
+class ExampleWorkflow(Resource):
+    async def post(self, name):
+        breakpoint()
+        print(f"{name}")
+        client = await Client.connect("localhost:7233", tls=True)
+        async with Worker(client, task_queue="hello-parallel-activity-task-queue", 
+                        workflows=[my_workflow], activities=[my_activity]):
+            workflow_execution = await client.execute_workflow(
+                my_workflow.run,
+                {"param1": "hello", "param2": 123},
+                id="my-workflow-id",
+                task_queue="hello-task-queue"
+            )
+        return f"Workflow execution started with run ID {workflow_execution.run_id}"
+
+app.register_blueprint(blueprint)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+api.init_app(app)
+# http://localhost:5000/api/doc
